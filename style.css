@@ -36,6 +36,32 @@ main {
     padding-bottom: 3rem;
 }
 
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.controls input, .controls select {
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    min-width: 220px;
+}
+
+.controls input:focus, .controls select:focus {
+    border-color: #3498db;
+}
+
 #loading {
     text-align: center;
     font-size: 1.5rem;
@@ -76,11 +102,39 @@ main {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+
+.fav-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.4rem;
+    z-index: 10;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.fav-btn:hover {
+    transform: scale(1.1);
+    background-color: #ffffff;
+}
+
+.fav-btn.active {
+    color: #e74c3c;
 }
 
 .image-container {
@@ -112,10 +166,6 @@ main {
     font-weight: 600;
     color: #2d3436;
     margin-bottom: 0.75rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .card-price {
