@@ -1,58 +1,59 @@
 # Product Explorer App
 
-A web application that fetches and displays products from a public API. Users will be able to explore products with features like search, filtering, and sorting. The goal is to demonstrate JavaScript, API integration, and UI development.
+The Product Explorer App is a web application that fetches and displays product data from a public API. It allows users to browse different products through a simple and interactive interface, with support for theme switching. The project focuses on practicing JavaScript concepts like API integration, DOM manipulation, and building a responsive UI.
 
-All searching, filtering, and sorting will be implemented using JavaScript array higher-order functions.
+All searching, filtering, and sorting features are implemented using JavaScript array higher-order functions such as map, filter, and sort.
 
 ## API Selection
 
 **API Name:** FakeStore API  
-**API Endpoint:** [https://fakestoreapi.com/products](https://fakestoreapi.com/products)
+**API Endpoint:** https://fakestoreapi.com/products  
 
 **Description:**  
-The FakeStore API is a free, open-source REST API designed for e-commerce prototyping and testing. It provides a variety of realistic product data, including titles, descriptions, pricing, and high-quality images.
+The FakeStore API is a free REST API that provides sample e-commerce product data. It includes details like product titles, prices, categories, descriptions, and images, which makes it useful for building and testing frontend applications.
 
 **Why this API was chosen:**  
-This API was selected for its simplicity and reliability. It does not require an API key or complex authentication, allowing for immediate integration. The structure of the response mirrors real-world e-commerce data, making it an excellent resource for building functional web applications.
+This API is simple to use and does not require any API key or authentication. The data format is easy to understand and closely resembles real-world e-commerce platforms, making it suitable for implementing features like search, filtering, and sorting.
 
 **Key Data Fields:**  
-- `id`: Unique identifier for each product.  
-- `title`: The name of the product.  
-- `price`: Numeric value representing the product cost.  
-- `category`: String representing the product group (e.g., electronics, jewelery).  
-- `image`: URL link to the product's visual asset.  
-- `description`: Detailed text about the product features.  
+- `id` – unique product identifier  
+- `title` – product name  
+- `price` – product price  
+- `category` – product category  
+- `image` – product image URL  
+- `description` – product details  
 
 **Suitability for Features:**  
-The data provided is highly structured, making it ideal for implementing core application features:  
-- **Search:** The `title` field allows for easy string-based matching.  
-- **Filtering:** The `category` field enables grouping and isolating specific product types.  
-- **Sorting:** The numeric `price` field simplifies the implementation of ascending and descending price order logic.
+The structure of the data makes it easy to implement:
+- Search using the product title  
+- Filtering based on category  
+- Sorting using price values  
 
 ## Features Planned
-- Search products by title
-- Filter products by category
-- Sort products by price (low to high, high to low)
-- Responsive design
-- Dynamic rendering of products
+- Search products by title  
+- Filter products by category  
+- Sort products by price (low to high, high to low)  
+- Responsive design  
+- Dynamic rendering of products  
+- Dark Mode toggle function
+- Persistent user preferences using localStorage
 
 ## Tech Stack
-- HTML
-- CSS
-- JavaScript (Vanilla JS)
-- Fetch API
+- HTML  
+- CSS  
+- JavaScript (Vanilla JS)  
+- Fetch API  
 
 ## Project Structure
-- `index.html`
-- `style.css`
-- `script.js`
-- `README.md`
+- `index.html`  
+- `style.css`  
+- `script.js`  
+- `README.md`  
 
 ## Setup Instructions
-1. Clone the repository
-2. Open `index.html` in your browser
+1. Clone the repository  
+2. Open `index.html` in your browser  
 
 ## Future Enhancements
-- Add favorites using localStorage
 - Add pagination or infinite scroll
-- Add dark mode
+- Add detailed product views  

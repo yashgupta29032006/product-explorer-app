@@ -3,11 +3,21 @@ const loadingText = document.getElementById('loading');
 const searchInput = document.getElementById('search');
 const categorySelect = document.getElementById('category');
 const sortSelect = document.getElementById('sort');
+const themeToggle = document.getElementById('theme-toggle');
 
 let allProducts = [];
 let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeToggle.textContent = 'Light Mode';
+    }
+}
+
 async function init() {
+    loadTheme();
     try {
         const [prodRes, catRes] = await Promise.all([
             fetch('https://fakestoreapi.com/products'),
@@ -83,5 +93,17 @@ function toggleFav(id) {
 searchInput.addEventListener('input', render);
 categorySelect.addEventListener('change', render);
 sortSelect.addEventListener('change', render);
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    if (document.body.classList.contains('dark-mode')) {
+        themeToggle.textContent = 'Light Mode';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        themeToggle.textContent = 'Dark Mode';
+        localStorage.setItem('theme', 'light');
+    }
+});
 
 init();
