@@ -1,59 +1,37 @@
 # Product Explorer App
 
-The Product Explorer App is a web application that fetches and displays product data from a public API. It allows users to browse different products through a simple and interactive interface, with support for theme switching. The project focuses on practicing JavaScript concepts like API integration, DOM manipulation, and building a responsive UI.
+The Product Explorer App is a web application that fetches and displays product data from a public API. It allows users to browse different products through a simple and interactive interface, with support for theme switching and saving favorite products. The project focuses on practicing JavaScript concepts like API integration, DOM manipulation, and building a responsive UI without making the code too complicated.
 
-All searching, filtering, and sorting features are implemented using JavaScript array higher-order functions such as map, filter, and sort.
+## Features
 
-## API Selection
+- Search (with debouncing)
+- Filter by category
+- Sort by price
+- Dark mode
+- Favorites using localStorage
 
-**API Name:** FakeStore API  
-**API Endpoint:** https://fakestoreapi.com/products  
+## Features Implemented
 
-**Description:**  
-The FakeStore API is a free REST API that provides sample e-commerce product data. It includes details like product titles, prices, categories, descriptions, and images, which makes it useful for building and testing frontend applications.
+- **Debounced Search:** Rather than searching on every single keystroke, the app waits a small amount of time (300ms) after you stop typing to filter the products. This prevents unnecessary processing.
+- **Category Filtering:** You can use the dropdown to only see products from a specific category.
+- **Price Sorting:** Products can be sorted from low to high price or high to low.
+- **Dark Mode:** You can toggle between light and dark themes. The app remembers your choice even if you refresh the page.
+- **Favorites:** You can click the heart icon on any product to mark it as a favorite. These favorites are saved in the browser's localStorage so they stay there when you come back.
 
-**Why this API was chosen:**  
-This API is simple to use and does not require any API key or authentication. The data format is easy to understand and closely resembles real-world e-commerce platforms, making it suitable for implementing features like search, filtering, and sorting.
+## How It Works
 
-**Key Data Fields:**  
-- `id` – unique product identifier  
-- `title` – product name  
-- `price` – product price  
-- `category` – product category  
-- `image` – product image URL  
-- `description` – product details  
+When the page loads, the app fetches product and category data from the FakeStore API using JavaScript's `fetch` function. Once the data comes back, it creates a list of all products in memory. 
 
-**Suitability for Features:**  
-The structure of the data makes it easy to implement:
-- Search using the product title  
-- Filtering based on category  
-- Sorting using price values  
-
-## Features Planned
-- Search products by title  
-- Filter products by category  
-- Sort products by price (low to high, high to low)  
-- Responsive design  
-- Dynamic rendering of products  
-- Dark Mode toggle function
-- Persistent user preferences using localStorage
+Whenever you type in the search bar, change a category, or pick a sort option, the app takes the original list, applies those filters and sorting rules, and then updates the HTML to show only the matching products. If you click the heart icon, the app updates a list of favorites saved in your browser and redraws the products out on the screen to show the filled heart.
 
 ## Tech Stack
-- HTML  
-- CSS  
-- JavaScript (Vanilla JS)  
-- Fetch API  
 
-## Project Structure
-- `index.html`  
-- `style.css`  
-- `script.js`  
-- `README.md`  
+- HTML
+- CSS
+- JavaScript (Vanilla JS)
+- FakeStore API
 
 ## Setup Instructions
-1. Clone the repository  
-2. Open `index.html` in your browser  
 
-## Future Enhancements
-- Add pagination or infinite scroll
-- Add detailed product views  
+1. Clone or download the repository
+2. Open `index.html` in your browser

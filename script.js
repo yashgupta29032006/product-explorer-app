@@ -19,18 +19,16 @@ function loadTheme() {
 async function init() {
     loadTheme();
     try {
-        const [prodRes, catRes] = await Promise.all([
-            fetch('https://fakestoreapi.com/products'),
-            fetch('https://fakestoreapi.com/products/categories')
-        ]);
+        const productsResponse = await fetch('https://fakestoreapi.com/products');
+        const categoriesResponse = await fetch('https://fakestoreapi.com/products/categories');
         
-        allProducts = await prodRes.json();
-        const categories = await catRes.json();
+        allProducts = await productsResponse.json();
+        const categories = await categoriesResponse.json();
         
-        categories.map(cat => {
+        categories.forEach(category => {
             const option = document.createElement('option');
-            option.value = cat;
-            option.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+            option.value = category;
+            option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
             categorySelect.appendChild(option);
         });
 
@@ -44,29 +42,29 @@ async function init() {
 
 function render() {
     const searchTerm = searchInput.value.toLowerCase();
-    const selectedCat = categorySelect.value;
+    const selectedCategory = categorySelect.value;
     const sortBy = sortSelect.value;
 
-    let filtered = allProducts.filter(p => 
-        p.title.toLowerCase().includes(searchTerm)
+    let filteredProducts = allProducts.filter(product => 
+        product.title.toLowerCase().includes(searchTerm)
     );
 
-    if (selectedCat !== 'all') {
-        filtered = filtered.filter(p => p.category === selectedCat);
+    if (selectedCategory !== 'all') {
+        filteredProducts = filteredProducts.filter(product => product.category === selectedCategory);
     }
 
     if (sortBy === 'low') {
-        filtered.sort((a, b) => a.price - b.price);
+        filteredProducts.sort((a, b) => a.price - b.price);
     } else if (sortBy === 'high') {
-        filtered.sort((a, b) => b.price - a.price);
+        filteredProducts.sort((a, b) => b.price - a.price);
     }
 
-    productList.innerHTML = filtered.map(product => {
-        const isFav = favorites.includes(product.id);
+    productList.innerHTML = filteredProducts.map(product => {
+        const isFavorite = favorites.includes(product.id);
         return `
             <div class="card">
-                <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${product.id})">
-                    ${isFav ? '❤️' : '🤍'}
+                <button class="fav-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id})">
+                    ${isFavorite ? '❤️' : '🤍'}
                 </button>
                 <div class="image-container">
                     <img src="${product.image}" alt="${product.title}">
@@ -80,9 +78,9 @@ function render() {
     }).join('');
 }
 
-function toggleFav(id) {
+function toggleFavorite(id) {
     if (favorites.includes(id)) {
-        favorites = favorites.filter(favId => favId !== id);
+        favorites = favorites.filter(favoriteId => favoriteId !== id);
     } else {
         favorites.push(id);
     }
@@ -90,7 +88,14 @@ function toggleFav(id) {
     render();
 }
 
-searchInput.addEventListener('input', render);
+let debounceTimer;
+searchInput.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        render();
+    }, 300);
+});
+
 categorySelect.addEventListener('change', render);
 sortSelect.addEventListener('change', render);
 
